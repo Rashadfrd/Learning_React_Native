@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button,Modal } from 'react-native';
 
-const Modal = ({modalSet,onSubmit}) => {
+const TodoModal = ({showModal,modalSet,onSubmit}) => {
     const [todo,setTodo] = useState('')
   return (
+    <Modal animationType='slide' visible={showModal}>
     <View style={[styles.container, styles.active]}>
       <Text style={{color:'#fff',marginBottom:10}}>Add your todo</Text>
       <TextInput onChangeText={text=>setTodo(text)} value={todo} style={styles.input} placeholder='Here' placeholderTextColor="#ccc"/>
@@ -12,6 +13,7 @@ const Modal = ({modalSet,onSubmit}) => {
          <Button title="Submit" color='#1C82AD' onPress={()=>{modalSet(false); onSubmit(todo); setTodo('')}} />
       </View>
     </View>
+    </Modal>
   )
 }
 
@@ -19,11 +21,7 @@ const styles = StyleSheet.create({
     container:{
         width:'100%',
         height:'100%',
-        zIndex:5,
         backgroundColor:'rgba(0, 0, 0, 0.80);',
-        position:'absolute',
-        top:0,
-        left:0,
         justifyContent:'center',
         alignItems:'center'
     },
@@ -45,4 +43,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Modal
+export default TodoModal

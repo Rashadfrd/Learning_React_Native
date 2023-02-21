@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView,FlatList } from 'react-native';
 import Modal from './components/Modal';
 
 export default function App() {
@@ -13,20 +13,22 @@ export default function App() {
   }
   return (
     <View style={styles.generalContainer}>
-    {
-      modal ? <Modal  modalSet={setModal} onSubmit = {todoAppend} /> : null
-    }
+    <Modal showModal={modal}  modalSet={setModal} onSubmit = {todoAppend} />
     <View style={styles.container}>
       <Button title='Todo Add' onPress={()=>{setModal(true)}} />
 
       <View style={styles.list}>
-        <ScrollView>
-          {arr.map((item)=>{
-            return (
-              <Text style={styles.listItem} key={item.id}>{item.name}</Text>
-              )
-            })}
-        </ScrollView>
+        <FlatList alwaysBounceVertical={true} 
+        data={arr}
+        renderItem={(itemData)=>{
+          return(
+            <Text style={styles.listItem}>{itemData.item.name}</Text>
+          )
+        }}
+        keyExtractor={(item)=>{
+          return item.id
+        }}
+        />
       </View>
     </View>
     </View>
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
 
   generalContainer:{
     flex:1,
-    position:'relative',
+    backgroundColor:'lime'
   },
   container: {
     paddingTop:70,
