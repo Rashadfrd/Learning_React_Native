@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView,FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView,FlatList, Pressable } from 'react-native';
 import Modal from './components/Modal';
+import { Octicons } from '@expo/vector-icons';
 
 export default function App() {
   const [modal,setModal] = useState(false)
   const [arr, setArr] = useState([]);
+
+  const deleteHandler = (id)=>{setArr((prevState)=>{return prevState.filter(x=>x.id !== id)})}
 
   const todoAppend = (item)=>{
     setArr((prevState)=>{
@@ -22,7 +25,10 @@ export default function App() {
         data={arr}
         renderItem={(itemData)=>{
           return(
-            <Text style={styles.listItem}>{itemData.item.name}</Text>
+            <View style={styles.listItemWrapper}>
+              <Text style={styles.listItem}>{itemData.item.name} </Text>
+                <Octicons name="trash" onPress={()=>{deleteHandler(itemData.item.id)}} size={23} color="#fff" />
+            </View>
           )
         }}
         keyExtractor={(item)=>{
@@ -55,11 +61,17 @@ const styles = StyleSheet.create({
     paddingBottom:70
   },
   listItem:{
-    width:'97%',
-    padding:10,
-    backgroundColor: 'rgba(89, 138, 138, 1)',
+    flexDirection:'column',
+    fontSize:20,
     color: '#fff',
-    borderRadius:5,
-    margin:5
+    },
+    listItemWrapper:{
+      flexDirection:'row',
+      alignItems:'center',
+      justifyContent:'space-between',
+      backgroundColor: 'rgba(89, 138, 138, 1)',
+      borderRadius:5,
+      margin:5,
+      padding:10,
     }
 });
