@@ -8,8 +8,17 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={{title:'Most useless app in the world'}} />
-        <Stack.Screen name="TodoApp" component={TodoAppScreen} />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{
+            title:'Most useless app in the world'
+          }} 
+        />
+        <Stack.Screen 
+          name="TodoApp" 
+          component={TodoAppScreen} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

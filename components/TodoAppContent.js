@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView,FlatList,StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Button,FlatList,StatusBar,TouchableHighlight } from 'react-native';
 import TodoAppModal from './TodoAppModal';
 import { Octicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 function TodoAppContent() {
   const [modal,setModal] = useState(false)
   const [arr, setArr] = useState([]);
+  const navigation = useNavigation();
 
   const deleteHandler = (id)=>{
     setArr((prevState)=>{
@@ -22,6 +25,7 @@ function TodoAppContent() {
     <StatusBar />
     <View style={styles.generalContainer}>
     <TodoAppModal showModal={modal}  modalSet={setModal} onSubmit = {todoAppend} />
+    <View style={{padding:10}}><AntDesign name="back" size={34} color="white" onPress={() => navigation.navigate('Home')} /></View>
     <View style={styles.container}>
       <Button title='Todo Add' onPress={()=>{setModal(true)}} />
 
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
 
   generalContainer:{
     flex:1,
-    backgroundColor:'lime'
+    backgroundColor: '#154c79',
   },
   container: {
     paddingTop:70,
