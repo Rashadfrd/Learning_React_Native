@@ -49,17 +49,18 @@ const DeliveryHeader = () => {
         marginTop:20,
         paddingLeft:3,
         alignItems:'center',
-        width:'98.5%'
+        width:'100%'
     },
     input:{
         backgroundColor:'#D6E4E5',
         flexDirection:'row',
         alignItems:'center',
         padding:10,
-        width:'86%',
+        width:'88%',
         borderRadius:5
     },
     inputItem:{
+      paddingLeft:10,
         width:'100%'
     }
   })
