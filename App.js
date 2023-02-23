@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DeliveryAppScreen from './screens/DeliveryAppScreen';
 import HomeScreen from './screens/HomeScreen'
 import TodoAppScreen from './screens/TodoAppScreen';
 
@@ -18,6 +19,10 @@ function App() {
         <Stack.Screen 
           name="TodoApp" 
           component={TodoAppScreen} 
+        />
+        <Stack.Screen 
+          name="DeliveryApp" 
+          component={DeliveryAppScreen} 
         />
       </Stack.Navigator>
     </NavigationContainer>

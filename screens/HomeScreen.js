@@ -21,6 +21,11 @@ const HomeScreen = () => {
                 <Text style={{color:'#fff'}}>Todo App</Text>
             </View>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('DeliveryApp')}>
+            <View style={styles.button}>
+                <Text style={{color:'#fff'}}>Delivery App</Text>
+            </View>
+        </TouchableOpacity>
         </ImageBackground>
       </View>
     );
